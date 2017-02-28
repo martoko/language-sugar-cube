@@ -1,0 +1,200 @@
+'fileTypes': [
+  'tw'
+]
+'name': 'SugarCube 2'
+'patterns': [
+  {
+    'include': '#variable'
+  }
+
+  {
+    'begin': '{{{|<nowiki>|"""'
+    'beginCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'end': '}}}|</nowiki>|"""'
+    'endCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'name': 'markup.raw.sugar-cube'
+  }
+
+  {
+    'begin': '\\^\\^'
+    'beginCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'end': '\\^\\^'
+    'endCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'name': 'markup.raw.sugar-cube'
+  }
+
+  {
+    'begin': '=='
+    'beginCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'end': '=='
+    'endCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'name': 'markup.raw.sugar-cube'
+  }
+
+  {
+    'begin': '~~'
+    'beginCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'end': '~~'
+    'endCaptures':
+      '0':
+        'name': 'support.sugar-cube'
+    'name': 'markup.raw.sugar-cube'
+  }
+
+  {
+    'match': '--'
+    'name': 'markup.raw.sugar-cube'
+  }
+
+  {
+    'match': '//.*//'
+    'name': 'markup.italic.sugar-cube'
+  }
+
+  {
+    'match': '\'\'.*\'\''
+    'name': 'markup.bold.sugar-cube'
+  }
+
+  {
+    'match': '__.*__'
+    'name': 'markup.underline.sugar-cube'
+  }
+
+  {
+        'begin': '/\\*'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.begin.sugar-cube'
+        'end': '\\*/'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.end.sugar-cube'
+        'name': 'comment.block.sugar-cube'
+  }
+
+  {
+        'begin': '@@([a-zA-Z_#:\.]+;)*'
+        'beginCaptures':
+          '0':
+            'name': 'markup.bold.sugar-cube'
+        'end': '@@'
+        'endCaptures':
+          '0':
+            'name': 'markup.bold.sugar-cube'
+  }
+
+  {
+        'begin': '(<<)(\\b[a-z-A-z_]+\\b)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.control.macro-start.sugar-cube'
+          '2':
+            'name': 'entity.name.function.sugar-cube'
+        'end': '>>'
+        'endCaptures':
+          '0':
+            'name': 'keyword.control.macro-end.sugar-cube'
+
+        'patterns': [
+          {'include': '#variable'}
+          {'include': '#double_quotes_string'}
+          {'include': '#backticks_variable'}
+          {'include': '#builtins'}
+          {'include': '#numbers'}
+          {
+            'match': '\\s+(=|to)\\s+'
+            'name': 'keyword.operator.assignment.sugar-cube'
+          }
+        ]
+  }
+
+  {
+        'match': '(<</)([a-zA-z]+)(>>)'
+        'captures':
+          '1':
+            'name': 'keyword.control.macro-start.sugar-cube'
+          '2':
+            'name': 'entity.name.function.sugar-cube'
+          '3':
+            'name': 'keyword.control.macro-start.sugar-cube'
+        'end': '>>'
+        'endCaptures':
+          '0':
+            'name': 'keyword.control.macro-end.sugar-cube'
+  }
+
+  {
+    'comment': 'Captures link groups'
+    'begin': '\\['
+    'beginCaptures':
+      '0':
+        'name': 'keyword.control.sugar-cube'
+    'end': '\\]'
+    'endCaptures':
+      '0':
+        'name': 'keyword.control.sugar-cube'
+    'patterns': [
+      {
+        'begin': '(\\[)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.control.sugar-cube'
+        'end': '(\\])'
+        'endCaptures':
+          '1':
+            'name': 'keyword.control.sugar-cube'
+        'patterns': [
+          {
+            'include': '#variable'
+          }
+        ]
+      }
+    ]
+  }
+]
+'repository':
+  'numbers':
+    'match': '\\b([0-9]+\\.?[0-9]*)\\b'
+    'name': 'constant.numeric.sugar-cube'
+  'builtins':
+    'match': '\\b(true|false)\\b'
+    'name': 'constant.language.sugar-cube'
+  'double_quotes_string':
+    'name': 'string.double-quotes.sugar-cube'
+    'match': '".*?"'
+  'backticks_variable':
+    'begin': '`'
+    'beginCaptures':
+      '0':
+        'name': 'keyword.control.sugar-cube'
+    'end': '`'
+    'endCaptures':
+      '0':
+        'name': 'keyword.control.sugar-cube'
+    'patterns': [
+      {'include': '#variable'}
+      {'include': '#double_quotes_string'}
+    ]
+  'variable':
+    'captures':
+      '1':
+        'name': 'variable.other.member.sugar-cube'
+      '2':
+        'name': 'variable.other.member.sugar-cube'
+    'match': '(?:(?<!\\$)(\\$[a-zA-Z_]+)|(_[a-zA-Z_]+))'
+'scopeName': 'source.tw'
